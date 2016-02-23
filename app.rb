@@ -35,6 +35,11 @@ post '/visit' do
 	@color = params[:colorpicker]
 
 
+Client.create :name=>@username,
+ :phone=>@phone, 
+ :datestamp=>@datetime,
+ :barber=>@master,
+ :color=>@color
 
 @message = "Thank you #{@username}, we will wait for you."
 
