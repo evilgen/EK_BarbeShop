@@ -39,20 +39,11 @@ end
 #обработчие post-запроса /visit
 #браузер отправляет страницу на сервер
 post '/visit' do
-	@username = params[:username]
-	@phone = params[:phone]
-	@datetime = params[:datetime]
-	@master = params[:master]
-	@color = params[:colorpicker]
-
 #Сохранение данных в базе данных
-Client.create 	:name=>@username,
- 				:phone=>@phone, 
-				:datestamp=>@datetime,
-				:barber=>@master,
-				:color=>@color
+@notation = Client.new params[:client]
+@notation.save
 
-@message = "Thank you #{@username}, we will wait for you."
+@message = "Thank you, we will wait for you."
 
 erb "#{@message}"
 end
