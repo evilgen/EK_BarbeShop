@@ -57,12 +57,9 @@ end
 #обработчие post-запроса /contacts
 #браузер отправляет страницу на сервер
 post '/contacts' do
-	@email = params[:email]
-	@letter = params[:letter]
-
 #Сохранение данных в базе данных
-Contact.create 	:email=>@email,
- 				:letter=>@letter
+@con = Contact.new params[:contact]
+@con.save
 	
 @message = "Thank you for your message."
 
