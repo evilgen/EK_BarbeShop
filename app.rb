@@ -9,6 +9,10 @@ set :database, "sqlite3:EKBarberShop.db"
 
 #Создание сущности Клиент с наследованием
 class Client < ActiveRecord::Base
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :color, presence: true
 end
 
 #Создание сущности Парикмахер с наследованием
