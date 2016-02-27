@@ -37,6 +37,7 @@ end
 #обработчик get-запроса /visit
 #браузер получает страницу с сервера
 get '/visit' do
+	@notation = Client.new
 	erb :visit
 end
 
@@ -45,16 +46,18 @@ end
 post '/visit' do
 #Сохранение данных в базе данных
 @notation = Client.new params[:client]
-@notation.save
-
-@message = "Thank you, we will wait for you."
-
-erb "#{@message}"
+	if @notation.save
+		erb "Thank you, we will wait for you."
+	else
+		@error = @notation.errors.full_messages.first
+		erb :visit
+	end
 end
 
 #обработчик get-запроса /contacts
 #браузер получает страницу с сервера
 get '/contacts' do
+	@con = Contact.new	
 	erb :contacts
 end
 
