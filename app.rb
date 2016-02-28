@@ -21,6 +21,8 @@ end
 
 #Создание сущности Контакт с наследованием
 class Contact < ActiveRecord::Base
+	validates :email, presence: true
+	validates :letter, presence: true
 end
 
 
@@ -66,9 +68,10 @@ end
 post '/contacts' do
 #Сохранение данных в базе данных
 @con = Contact.new params[:contact]
-@con.save
-	
-@message = "Thank you for your message."
-
-erb "#{@message}"
+if @con.save
+	erb "Thank you for your message."
+else
+	@error = @con.errors.full_messages.first
+	erb :contacts
+end
 end
