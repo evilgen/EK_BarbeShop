@@ -1,0 +1,6 @@
+<h2>Списаок записавшихся</h2>
+<% @clients.each do |client|%>
+	<p> 
+		<a href = "/cleint/<%= client.id %>"><%= client.name %></a>
+	</p>
+<% end %>
