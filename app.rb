@@ -68,10 +68,14 @@ end
 post '/contacts' do
 #Сохранение данных в базе данных
 @con = Contact.new params[:contact]
-if @con.save
-	erb "Thank you for your message."
-else
-	@error = @con.errors.full_messages.first
-	erb :contacts
+	if @con.save
+		erb "Thank you for your message."
+	else
+		@error = @con.errors.full_messages.first
+		erb :contacts
+	end
 end
+
+get '/barber/:id' do
+	erb :barber
 end
